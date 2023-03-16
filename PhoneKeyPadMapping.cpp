@@ -9,11 +9,14 @@ int main()
     vector<string> ans;
     string mapping[10] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
     phoneKeyPad(digit, output, index, ans, mapping);
+    for (auto combination : ans)
+    {
+        cout << combination << endl;
+    }
     return 0;
 }
 void phoneKeyPad(string digit, string output, int index, vector<string> &ans, string mapping[])
 {
-    cout << "Call of " << output << endl;
     if (index == digit.length())
     {
         ans.push_back(output);
@@ -27,5 +30,4 @@ void phoneKeyPad(string digit, string output, int index, vector<string> &ans, st
         phoneKeyPad(digit, output, index + 1, ans, mapping);
         output.pop_back();
     }
-    cout << "End of loop " << value << endl;
 }
