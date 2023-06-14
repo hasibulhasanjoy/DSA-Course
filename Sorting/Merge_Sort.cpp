@@ -3,36 +3,25 @@ using namespace std;
 
 void mergeArray(vector<int> &nums, int start, int end, int mid)
 {
-    int len1 = mid - start + 1;
-    int len2 = end - mid;
-    vector<int> v1(len1);
-    vector<int> v2(len2);
     int index = start;
-    for (int i = 0; i < len1; i++)
+    vector<int> temp;
+    int i = start, j = mid + 1;
+    while (i <= mid and j <= end)
     {
-        v1[i] = nums[index++];
-    }
-    for (int i = 0; i < len2; i++)
-    {
-        v2[i] = nums[index++];
-    }
-    int index1 = 0, index2 = 0;
-    index = start;
-    while (index1 < len1 and index2 < len2)
-    {
-        if (v1[index1] <= v2[index2])
-            nums[index++] = v1[index1++];
+        if (nums[i] < nums[j])
+            temp.push_back(nums[i++]);
         else
-            nums[index++] = v2[index2++];
+            temp.push_back(nums[j++]);
     }
-    while (index1 < len1)
+    while (i <= mid)
+        temp.push_back(nums[i++]);
+    while (j <= end)
     {
-        nums[index++] = v1[index1++];
+        temp.push_back(nums[j++]);
     }
-
-    while (index2 < len2)
+    for (auto num : temp)
     {
-        nums[index++] = v2[index2++];
+        nums[index++] = num;
     }
 }
 
@@ -42,7 +31,6 @@ void mergeSort(vector<int> &nums, int start, int end)
     {
         return;
     }
-    // cout << "hi";
     int mid = (start + end) / 2;
     mergeSort(nums, start, mid);
     mergeSort(nums, mid + 1, end);
