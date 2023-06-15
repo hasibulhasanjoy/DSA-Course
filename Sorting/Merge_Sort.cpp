@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void mergeArray(vector<int> &nums, int start, int end, int mid)
+void sortAndMerge(vector<int> &nums, int start, int end, int mid)
 {
     int index = start;
     vector<int> temp;
@@ -34,7 +34,7 @@ void mergeSort(vector<int> &nums, int start, int end)
     int mid = (start + end) / 2;
     mergeSort(nums, start, mid);
     mergeSort(nums, mid + 1, end);
-    mergeArray(nums, start, end, mid);
+    sortAndMerge(nums, start, end, mid);
 }
 int main()
 {
