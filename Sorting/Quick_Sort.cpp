@@ -15,7 +15,7 @@ int partition(vector<int> &nums, int start, int end)
     int pivotIndex = start + countLessThenPivot;
     swap(nums[start], nums[pivotIndex]);
     int i = start, j = end;
-    while (i < j)
+    while (i < j and i < pivotIndex and j > pivotIndex)
     {
         if (nums[i] >= pivot and nums[j] <= pivot)
         {
