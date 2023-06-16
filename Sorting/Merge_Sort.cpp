@@ -3,25 +3,32 @@ using namespace std;
 
 void sortAndMerge(vector<int> &nums, int start, int end, int mid)
 {
-    int index = start;
-    vector<int> temp;
+    // Array is faster than vector. using array is more efficient than using vector
+    int temp[nums.size()];
     int i = start, j = mid + 1;
+    int index = start;
     while (i <= mid and j <= end)
     {
-        if (nums[i] < nums[j])
-            temp.push_back(nums[i++]);
+        if (nums[i] <= nums[j])
+        {
+            temp[index++] = nums[i++];
+        }
         else
-            temp.push_back(nums[j++]);
+        {
+            temp[index++] = nums[j++];
+        }
     }
     while (i <= mid)
-        temp.push_back(nums[i++]);
+    {
+        temp[index++] = nums[i++];
+    }
     while (j <= end)
     {
-        temp.push_back(nums[j++]);
+        temp[index++] = nums[j++];
     }
-    for (auto num : temp)
+    for (int i = start; i <= end; i++)
     {
-        nums[index++] = num;
+        nums[i] = temp[i];
     }
 }
 
