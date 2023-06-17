@@ -34,3 +34,6 @@ int main()
     }
     return 0;
 }
+
+//? question : https://www.codingninjas.com/codestudio/problems/subsequences-of-string_985087?leftPanelTab=0&utm_source=youtube&utm_medium=affiliate&utm_campaign=love_babbar_16
+//? vide : https://www.youtube.com/watch?v=V0IgCltYgg4&list=PLDzeHZWIZsTryvtXdMr6rPh4IDexB5NIA&index=41&ab_channel=CodeHelp-byBabbar
