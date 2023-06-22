@@ -64,6 +64,7 @@ vector<string> generatePath(vector<vector<int>> &m, int &n)
     {
         return allPath;
     }
+    // Initialize a 2d vector and assign all value with false
     vector<vector<bool>> visited(n, vector<bool>(n, false));
     string path = "";
     findPath(m, n, allPath, srcX, srcY, visited, path);
