@@ -6,8 +6,7 @@ bool canVisit(int x, int y, int n, vector<vector<bool>> &visited, vector<vector<
     {
         return true;
     }
-    else
-        return false;
+    return false;
 }
 void findPath(vector<vector<int>> &m, int n, vector<string> &allPath, int x, int y,
               vector<vector<bool>> visited, string path)
