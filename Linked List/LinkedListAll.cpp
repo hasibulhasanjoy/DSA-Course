@@ -1,25 +1,25 @@
 #include <bits/stdc++.h>
 using namespace std;
-class node
+class Node
 {
 public:
     int data;
-    node *next;
+    Node *next;
 };
-class linked_list
+class LinkedList
 {
 private:
-    node *head, *tail;
+    Node *head, *tail;
 
 public:
-    linked_list()
+    LinkedList()
     {
         head = NULL;
         tail = NULL;
     }
-    void add_node(int data)
+    void addNode(int data)
     {
-        node *newNode = new node;
+        Node *newNode = new Node;
         newNode->data = data;
         newNode->next = NULL;
         if (head == NULL)
@@ -33,7 +33,7 @@ public:
     }
     void insert(int index, int data)
     {
-        node *newNode = new node;
+        Node *newNode = new Node;
         newNode->data = data;
         if (index == 1)
         {
@@ -41,7 +41,7 @@ public:
             head = newNode;
             return;
         }
-        node *ptr1 = head, *ptr2 = head->next;
+        Node *ptr1 = head, *ptr2 = head->next;
         for (int i = 1; i < index - 1; i++)
         {
             ptr1 = ptr1->next;
@@ -54,13 +54,13 @@ public:
     {
         if (index == 1)
         {
-            node *current = head;
+            Node *current = head;
             head = head->next;
             free(current);
             return;
         }
-        node *current = head;
-        node *nextNode = head->next;
+        Node *current = head;
+        Node *nextNode = head->next;
         for (int i = 1; i < index - 1; i++)
         {
             current = current->next;
@@ -71,7 +71,7 @@ public:
     }
     void print()
     {
-        node *current = head;
+        Node *current = head;
         int element = 1;
         while (current != NULL)
         {
@@ -85,26 +85,26 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(0);
     cout.tie(0);
-    linked_list l;
+    LinkedList linkedList;
     for (int i = 1; i <= 5; i++)
     {
-        l.add_node(i);
+        linkedList.addNode(i);
     }
     cout << "*** Before insertion ***" << endl;
-    l.print();
-    l.insert(1, 10000);
-    l.insert(3, 30000);
-    l.insert(6, 10);
-    l.insert(8, 2000);
-    l.insert(10, 23475);
+    linkedList.print();
+    linkedList.insert(1, 10000);
+    linkedList.insert(3, 30000);
+    linkedList.insert(6, 10);
+    linkedList.insert(8, 2000);
+    linkedList.insert(10, 23475);
     cout << "*** After insertion ***" << endl;
-    l.print();
-    l.deleteNode(1);
-    l.deleteNode(2);
-    l.deleteNode(4);
-    l.deleteNode(5);
-    l.deleteNode(6);
+    linkedList.print();
+    linkedList.deleteNode(1);
+    linkedList.deleteNode(2);
+    linkedList.deleteNode(4);
+    linkedList.deleteNode(5);
+    linkedList.deleteNode(6);
     cout << "*** After Deletion ***" << endl;
-    l.print();
+    linkedList.print();
     return 0;
 }
