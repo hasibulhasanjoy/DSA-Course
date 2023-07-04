@@ -50,6 +50,25 @@ public:
         ptr1->next = newNode;
         newNode->next = ptr2;
     }
+    void deleteNode(int index)
+    {
+        if (index == 1)
+        {
+            node *current = head;
+            head = head->next;
+            free(current);
+            return;
+        }
+        node *current = head;
+        node *nextNode = head->next;
+        for (int i = 1; i < index - 1; i++)
+        {
+            current = current->next;
+            nextNode = nextNode->next;
+        }
+        current->next = nextNode->next;
+        free(nextNode);
+    }
     void print()
     {
         node *current = head;
@@ -79,6 +98,13 @@ int main()
     l.insert(8, 2000);
     l.insert(10, 23475);
     cout << "*** After insertion ***" << endl;
+    l.print();
+    l.deleteNode(1);
+    l.deleteNode(2);
+    l.deleteNode(4);
+    l.deleteNode(5);
+    l.deleteNode(6);
+    cout << "*** After Deletion ***" << endl;
     l.print();
     return 0;
 }
