@@ -17,10 +17,8 @@ public:
         head = NULL;
         tail = NULL;
     }
-    int cnt = 0;
     void add_node(int data)
     {
-        cnt++;
         node *newNode = new node;
         newNode->data = data;
         newNode->next = NULL;
@@ -28,43 +26,39 @@ public:
         {
             head = newNode;
             tail = newNode;
+            return;
         }
-        else
-        {
-            tail->next = newNode;
-            tail = tail->next;
-        }
+        tail->next = newNode;
+        tail = tail->next;
     }
     void insert(int index, int data)
     {
-        cnt++;
-        node *insertNode = new node;
-        insertNode->data = data;
+        node *newNode = new node;
+        newNode->data = data;
         if (index == 1)
         {
-            insertNode->next = head;
-            head = insertNode;
+            newNode->next = head;
+            head = newNode;
             return;
         }
-        node *currentNode = head;
+        node *ptr1 = head, *ptr2 = head->next;
         for (int i = 1; i < index - 1; i++)
         {
-            currentNode = currentNode->next;
+            ptr1 = ptr1->next;
+            ptr2 = ptr2->next;
         }
-        insertNode->next = currentNode->next;
-        currentNode->next = insertNode;
+        ptr1->next = newNode;
+        newNode->next = ptr2;
     }
     void print()
     {
         node *current = head;
-        int i = 1;
+        int element = 1;
         while (current != NULL)
         {
-            cout << "Element at " << i << " : " << current->data << endl;
-            i++;
+            cout << "Element at " << element++ << " : " << current->data << endl;
             current = current->next;
         }
-        cout << endl;
     }
 };
 int main()
@@ -72,17 +66,19 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(0);
     cout.tie(0);
-    linked_list list1;
-    for (int i = 5; i <= 10; i++)
+    linked_list l;
+    for (int i = 1; i <= 5; i++)
     {
-        list1.add_node(i);
+        l.add_node(i);
     }
-    list1.print();
-    cout << list1.cnt << endl;
-    list1.insert(7, 1000000000);
-    list1.insert(1, 1000000000);
-    list1.insert(3, 1000000000);
-    list1.print();
-    cout << list1.cnt << endl;
+    cout << "*** Before insertion ***" << endl;
+    l.print();
+    l.insert(1, 10000);
+    l.insert(3, 30000);
+    l.insert(6, 10);
+    l.insert(8, 2000);
+    l.insert(10, 23475);
+    cout << "*** After insertion ***" << endl;
+    l.print();
     return 0;
 }
