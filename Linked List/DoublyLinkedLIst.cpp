@@ -55,11 +55,11 @@ public:
         {
             ptr1 = ptr1->next;
             ptr2 = ptr2->next;
-        }
-        if (ptr1->next == NULL and ptr2 == NULL)
-        {
-            addNode(data);
-            return;
+            if (ptr2->next == NULL) // last node reached
+            {
+                addNode(data);
+                return;
+            }
         }
         ptr1->next = newNode;
         newNode->prev = ptr1;
@@ -82,18 +82,13 @@ public:
         {
             ptr1 = ptr1->next;
             ptr2 = ptr2->next;
-            if (ptr1->next == NULL and ptr2 == NULL)
-                break;
+            if (ptr2->next == NULL) // Last Node Reached
+            {
+                ptr1->next = NULL;
+                free(ptr2);
+                return;
+            }
         }
-        if (ptr1->next == NULL and ptr2 == NULL)
-        {
-            Node *temp = ptr1;
-            tail = ptr1->prev;
-            tail->next = NULL;
-            free(temp);
-            return;
-        }
-        // cout << ptr1->data << " " << ptr2->data << endl;
         Node *temp = ptr2->next;
         ptr1->next = temp;
         temp->prev = ptr1;
@@ -102,9 +97,10 @@ public:
     void printForward()
     {
         Node *ptr = head;
+        int element = 1;
         while (ptr != NULL)
         {
-            cout << ptr->data << " ";
+            cout << "(" << element++ << ")" << ptr->data << " ";
             ptr = ptr->next;
         }
         cout << endl;
@@ -112,19 +108,42 @@ public:
     void printReverse()
     {
         Node *ptr = head;
+        int element = 1;
         while (ptr->next != NULL)
         {
             ptr = ptr->next;
+            element++;
         }
         while (ptr != NULL)
         {
-            cout << ptr->data << " ";
+            cout << "(" << element-- << ")" << ptr->data << " ";
             ptr = ptr->prev;
         }
         cout << endl;
     }
 };
 
+void insert(DoublyLinkedList &list)
+{
+    list.insertNode(1, 10000);
+    list.insertNode(3, 3000);
+    list.insertNode(7, 700);
+    list.insertNode(10, 1234);
+    list.insertNode(11, 1111);
+    list.insertNode(16, 16666);
+    list.insertNode(17, 7777);
+}
+
+void Delete(DoublyLinkedList &list)
+{
+    list.deleteNode(1);
+    list.deleteNode(2);
+    list.deleteNode(5);
+    list.deleteNode(7);
+    list.deleteNode(7);
+    list.deleteNode(11);
+    list.deleteNode(11);
+}
 int main()
 {
     DoublyLinkedList list1;
@@ -132,27 +151,17 @@ int main()
     {
         list1.addNode(i);
     }
-    cout << "                       *** Before insertion ***" << endl;
+    cout << endl;
     list1.printForward();
     list1.printReverse();
-    list1.insertNode(1, 10000);
-    list1.insertNode(3, 3000);
-    list1.insertNode(7, 700);
-    list1.insertNode(10, 1234);
-    list1.insertNode(11, 1111);
-    list1.insertNode(16, 16666);
-    list1.insertNode(17, 7777);
-    cout << "                       *** After insertion ***" << endl;
+    //! Insert
+    insert(list1);
+    cout << endl;
     list1.printForward();
     list1.printReverse();
-    list1.deleteNode(1);
-    list1.deleteNode(2);
-    list1.deleteNode(5);
-    list1.deleteNode(7);
-    list1.deleteNode(7);
-    list1.deleteNode(10);
-    list1.deleteNode(11);
-    cout << "                      ***After Deletion ***" << endl;
+    //! Delete
+    Delete(list1);
+    cout << endl;
     list1.printForward();
     list1.printReverse();
     return 0;
