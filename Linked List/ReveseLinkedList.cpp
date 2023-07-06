@@ -12,6 +12,19 @@ class LinkedList
 {
 private:
     Node *head, *lastNode;
+    void reverseListRecursion(Node *current, Node *previous)
+    {
+        if (current == NULL)
+        {
+            head = previous;
+            return;
+        }
+        Node *nextNode = current->next;
+        current->next = previous;
+        previous = current;
+        current = nextNode;
+        reverseListRecursion(current, previous);
+    }
 
 public:
     LinkedList()
@@ -47,6 +60,12 @@ public:
         }
         head = previousNode;
     }
+    void reverseUsingRecursion()
+    {
+        Node *current = head;
+        Node *previous = NULL;
+        reverseListRecursion(current, previous);
+    }
     void print()
     {
         Node *current = head;
@@ -68,6 +87,8 @@ int main()
     }
     list.print();
     list.reverseList();
+    list.print();
+    list.reverseUsingRecursion();
     list.print();
     return 0;
 }
