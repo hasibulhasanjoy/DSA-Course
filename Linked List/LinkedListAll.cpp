@@ -9,13 +9,13 @@ public:
 class LinkedList
 {
 private:
-    Node *head, *tail;
+    Node *head, *lastNode;
 
 public:
     LinkedList()
     {
         head = NULL;
-        tail = NULL;
+        lastNode = NULL;
     }
     void addNode(int data)
     {
@@ -25,11 +25,11 @@ public:
         if (head == NULL)
         {
             head = newNode;
-            tail = newNode;
+            lastNode = newNode;
             return;
         }
-        tail->next = newNode;
-        tail = tail->next;
+        lastNode->next = newNode;
+        lastNode = lastNode->next;
     }
     void insert(int index, int data)
     {
