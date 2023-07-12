@@ -48,6 +48,30 @@ public:
         }
         return false;
     }
+    bool floydLoopDetection()
+    {
+        lastNode->next = head->next;
+        if (head == NULL)
+        {
+            return false;
+        }
+        Node *fast = head;
+        Node *slow = head;
+        while (slow != NULL and fast != NULL)
+        {
+            fast = fast->next;
+            if (fast != NULL)
+            {
+                fast = fast->next;
+            }
+            slow = slow->next;
+            if (fast == slow)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     void print()
     {
         Node *current = head;
@@ -69,7 +93,7 @@ int main()
         l.addNode(i);
     }
     l.print();
-    bool present = l.detectLoop();
+    bool present = l.floydLoopDetection();
     if (present)
     {
         cout << "Loop exist" << endl;
