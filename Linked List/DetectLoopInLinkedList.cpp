@@ -160,3 +160,4 @@ int main()
     }
     return 0;
 }
+//? vide : https://www.youtube.com/watch?v=VxOFflTXlXo&list=PLDzeHZWIZsTr54_TH_NK4ibFojS4mmQA6&index=4&ab_channel=CodeHelp-byBabbar
