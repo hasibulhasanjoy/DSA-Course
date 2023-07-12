@@ -34,7 +34,7 @@ public:
     }
     bool detectLoop()
     {
-        lastNode->next = head->next;
+        // lastNode->next = head->next;
         map<Node *, bool> visited;
         Node *current = head;
         while (current != NULL)
@@ -54,7 +54,7 @@ public:
         {
             return NULL;
         }
-        lastNode->next = head->next;
+        // lastNode->next = head->next;
         if (head == NULL)
         {
             return NULL;
@@ -95,6 +95,28 @@ public:
         }
         return slow;
     }
+    void removeLoop()
+    {
+        if (head == NULL)
+        {
+            return;
+        }
+        Node *startingNodeOfLoop = firstNodeOfLoop();
+        if (startingNodeOfLoop == NULL)
+        {
+            return;
+        }
+        Node *temp = startingNodeOfLoop->next;
+        while (temp->next != startingNodeOfLoop)
+        {
+            temp = temp->next;
+        }
+        temp->next = NULL;
+    }
+    void makeLoop()
+    {
+        lastNode->next = head->next;
+    }
     void print()
     {
         Node *current = head;
@@ -111,11 +133,12 @@ public:
 int main()
 {
     LinkedList l;
-    for (int i = 1; i <= 6; i++)
+    for (int i = 1; i <= 7; i++)
     {
         l.addNode(i);
     }
     l.print();
+    l.makeLoop();
     Node *present = l.floydLoopDetection();
     if (present != NULL)
     {
@@ -129,8 +152,13 @@ int main()
     if (firstNode == NULL)
     {
         cout << "Loop does not exist" << endl;
-        return 0;
     }
-    cout << firstNode->data << endl;
+    l.removeLoop();
+    firstNode = l.floydLoopDetection();
+    if (firstNode == NULL)
+    {
+        cout << "Loop does not exist" << endl;
+        l.print();
+    }
     return 0;
 }
