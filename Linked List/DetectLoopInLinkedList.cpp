@@ -50,6 +50,10 @@ public:
     }
     Node *floydLoopDetection()
     {
+        if (head == NULL)
+        {
+            return NULL;
+        }
         lastNode->next = head->next;
         if (head == NULL)
         {
@@ -72,6 +76,25 @@ public:
         }
         return NULL;
     }
+    Node *firstNodeOfLoop()
+    {
+        if (head == NULL)
+        {
+            return NULL;
+        }
+        Node *intersection = floydLoopDetection();
+        if (intersection == NULL)
+        {
+            return NULL;
+        }
+        Node *slow = head;
+        while (slow != intersection)
+        {
+            slow = slow->next;
+            intersection = intersection->next;
+        }
+        return slow;
+    }
     void print()
     {
         Node *current = head;
@@ -88,7 +111,7 @@ public:
 int main()
 {
     LinkedList l;
-    for (int i = 1; i <= 7; i++)
+    for (int i = 1; i <= 6; i++)
     {
         l.addNode(i);
     }
@@ -102,5 +125,12 @@ int main()
     {
         cout << "Loop does not exist" << endl;
     }
+    Node *firstNode = l.firstNodeOfLoop();
+    if (firstNode == NULL)
+    {
+        cout << "Loop does not exist" << endl;
+        return 0;
+    }
+    cout << firstNode->data << endl;
     return 0;
 }
