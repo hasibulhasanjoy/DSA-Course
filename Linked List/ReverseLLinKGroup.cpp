@@ -28,6 +28,7 @@ private:
     }
     Node *reverseKGroup(Node *head, int k)
     {
+        cout << head->data << endl;
         if (head == NULL or head->next == NULL or k == 1)
         {
             return head;
@@ -72,7 +73,12 @@ public:
     }
     void reverseInKGroup(int k)
     {
-        head = reverseKGroup(head, k);
+        // cout << "function starts";
+        Node *newHead = head->next;
+        Node *ptr = reverseKGroup(head, k);
+        cout << "call starts";
+        head = newHead;
+        // cout << "function completed";
     }
     void print()
     {
@@ -92,9 +98,9 @@ int main()
     {
         l.addNode(i);
     }
-    l.print();
+    // l.print();
     l.reverseInKGroup(2);
-    l.print();
+    // l.print();
     return 0;
 }
 
