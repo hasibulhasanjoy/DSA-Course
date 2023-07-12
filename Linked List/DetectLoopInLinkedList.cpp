@@ -34,7 +34,6 @@ public:
     }
     bool detectLoop()
     {
-        // lastNode->next = head->next;
         map<Node *, bool> visited;
         Node *current = head;
         while (current != NULL)
@@ -54,7 +53,6 @@ public:
         {
             return NULL;
         }
-        // lastNode->next = head->next;
         if (head == NULL)
         {
             return NULL;
