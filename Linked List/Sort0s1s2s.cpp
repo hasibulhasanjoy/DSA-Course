@@ -46,38 +46,38 @@ public:
     {
         Node *current = head;
         // make 3 linked list for storing 0,1,2
-        LinkedList l0, l1, l2;
-        l1.addNode(-1);
-        l2.addNode(-1);
+        LinkedList list0, list1, list2;
+        list1.addNode(-1);
+        list2.addNode(-1);
         while (current != NULL)
         {
             if (current->data == 0)
             {
-                l0.addNode(0);
+                list0.addNode(0);
             }
             else if (current->data == 1)
             {
-                l1.addNode(1);
+                list1.addNode(1);
             }
             else
             {
-                l2.addNode(2);
+                list2.addNode(2);
             }
             current = current->next;
         }
         // Merge 3 Linked List
-        if (l1.head->next != NULL)
+        if (list1.head->next != NULL)
         {
-            l0.lastNode->next = l1.head->next;
-            l1.lastNode->next = l2.head->next;
+            list0.lastNode->next = list1.head->next;
+            list1.lastNode->next = list2.head->next;
         }
         else
         {
-            l0.lastNode->next = l2.head->next;
+            list0.lastNode->next = list2.head->next;
         }
-        l2.lastNode = NULL;
+        list2.lastNode = NULL;
         // New head is l0's first node
-        head = l0.head;
+        head = list0.head;
     }
 };
 int main()
